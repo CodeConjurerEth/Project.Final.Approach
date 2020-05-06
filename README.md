@@ -1,5 +1,5 @@
 Download SourceTree (you don't have to but it's much easier I think)
-- Clone the online repository to your PC 
+- Clone the online repository to your PC (if you're in SourceTree there's a clone button there)
 - Make changes to the folder you cloned then follow the steps underneath
 - Always commit first (only staged will be uploaded (this is on your local repository))
 - Always pull before you push (pulling from the online repo to your local repo)
