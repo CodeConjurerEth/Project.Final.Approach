@@ -22,3 +22,9 @@ C:\Users\miuvl\Vlad\Y1.T3\Physics.Programming\Physics.Repo\Miu_Vlad-Ilie_ECM1VEc
 C:\Users\miuvl\Vlad\Y1.T3\Physics.Programming\Physics.Repo\Miu_Vlad-Ilie_ECM1VEc_477602\Game\Game\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
 C:\Users\miuvl\Vlad\Y1.T3\Physics.Programming\Physics.Repo\Miu_Vlad-Ilie_ECM1VEc_477602\Game\Game\obj\x86\Debug\GXPEngine.exe
 C:\Users\miuvl\Vlad\Y1.T3\Physics.Programming\Physics.Repo\Miu_Vlad-Ilie_ECM1VEc_477602\Game\Game\obj\x86\Debug\GXPEngine.pdb
+C:\Users\miuvl\Vlad\Y1.T4\Project.Final.Approach\Programin.Stuff\Game\Game\bin\Debug\GXPEngine.exe
+C:\Users\miuvl\Vlad\Y1.T4\Project.Final.Approach\Programin.Stuff\Game\Game\bin\Debug\GXPEngine.pdb
+C:\Users\miuvl\Vlad\Y1.T4\Project.Final.Approach\Programin.Stuff\Game\Game\obj\x86\Debug\GXPEngine.csprojAssemblyReference.cache
+C:\Users\miuvl\Vlad\Y1.T4\Project.Final.Approach\Programin.Stuff\Game\Game\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
+C:\Users\miuvl\Vlad\Y1.T4\Project.Final.Approach\Programin.Stuff\Game\Game\obj\x86\Debug\GXPEngine.exe
+C:\Users\miuvl\Vlad\Y1.T4\Project.Final.Approach\Programin.Stuff\Game\Game\obj\x86\Debug\GXPEngine.pdb

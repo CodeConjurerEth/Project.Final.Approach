@@ -36,12 +36,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ball.cs" />
-    <Compile Include="Block.cs" />
-    <Compile Include="CollisionInfo.cs" />
     <Compile Include="Components\Arrow.cs" />
     <Compile Include="Components\LineSegment.cs" />
-    <Compile Include="Level.cs" />
+    <Compile Include="MapScreen.cs" />
     <Compile Include="MyGame.cs" />
     <Compile Include="..\..\GXPEngine\AnimationSprite.cs">
       <Link>GXPEngine\AnimationSprite.cs</Link>
