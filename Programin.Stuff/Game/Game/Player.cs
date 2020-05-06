@@ -7,25 +7,58 @@ public class Player : Sprite
     public Vec2 velocity;
     public Vec2 position;
 
-    float _speed;
-    float _maxVelocity;
-    float _frictionSpeed;
-    bool _movingForward;
-    bool _movingBackward;
+    //PRIVATE
+    private MyGame _myGame;
+    private float _mousePos;
+    private float _prevMousePos;
+    private float _speed;
+    private float _maxVelocity;
+    private float _frictionSpeed;
+    private float _lrPos;
+    private float _lrSpeed;
+    private bool _movingForward;
+    private bool _movingBackward;
 
     public Player() : base("square.png", true)
     {
         position.SetXY(500, 500);
         SetOrigin(width / 2, height / 2);
 
+        _myGame = (MyGame)game;
         _speed = 1f;
         _maxVelocity = 7f;
         _frictionSpeed = 0.3f;
         _movingForward = false;
         _movingBackward = false;
+
+        _lrPos = _myGame.width/2;
+        _lrSpeed = 5;
     }
 
     void HandleInput()
+    {
+        _prevMousePos = _mousePos;
+        _mousePos = Input.mouseX;
+        Console.WriteLine("position: " + _lrPos + "             speed: " + _lrSpeed);
+        //LIMIT POSITION LR BORDERS
+        if (_lrPos > _myGame.width - this.width / 2)
+            _lrPos = _myGame.width - this.width / 2;
+        else if (_lrPos < this.width / 2)
+            _lrPos = this.width / 2;
+
+        if (Input.GetMouseButton(0))
+        {
+            _lrSpeed = Mathf.Abs(_prevMousePos - _mousePos) / 2.5f;
+            if (_prevMousePos < _mousePos)
+                _lrPos += _lrSpeed;
+            if (_prevMousePos > _mousePos)
+                _lrPos -= _lrSpeed;
+        }
+        //WELL, POS
+        position.x = _lrPos;
+    }
+
+    void HandleInputArrows()
     { 
         Vec2 unitVector = Vec2.GetUnitVectorDeg(rotation);
         float rotationValue = velocity.Length() / 5f;
@@ -93,6 +126,7 @@ public class Player : Sprite
     void Update()
     {
         HandleInput();
+       // HandleInputArrows();
 
         Vec2 friction = (velocity.Normalized());
         velocity -= friction * _frictionSpeed;
@@ -107,4 +141,3 @@ public class Player : Sprite
         y = position.y;
     }
 }
-
