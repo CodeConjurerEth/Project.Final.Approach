@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GXPEngine</RootNamespace>
+    <AssemblyName>GXPEngine</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ball.cs" />
+    <Compile Include="Block.cs" />
+    <Compile Include="CollisionInfo.cs" />
+    <Compile Include="Components\Arrow.cs" />
+    <Compile Include="Components\LineSegment.cs" />
+    <Compile Include="Level.cs" />
+    <Compile Include="MyGame.cs" />
+    <Compile Include="..\..\GXPEngine\AnimationSprite.cs">
+      <Link>GXPEngine\AnimationSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Canvas.cs">
+      <Link>GXPEngine\Canvas.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Game.cs">
+      <Link>GXPEngine\Game.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\GameObject.cs">
+      <Link>GXPEngine\GameObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Mathf.cs">
+      <Link>GXPEngine\Mathf.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Pivot.cs">
+      <Link>GXPEngine\Pivot.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Sound.cs">
+      <Link>GXPEngine\Sound.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\SoundChannel.cs">
+      <Link>GXPEngine\SoundChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Sprite.cs">
+      <Link>GXPEngine\Sprite.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\AddOns\Camera.cs">
+      <Link>GXPEngine\AddOns\Camera.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\AddOns\EasyDraw.cs">
+      <Link>GXPEngine\AddOns\EasyDraw.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\AddOns\HierarchyManager.cs">
+      <Link>GXPEngine\AddOns\HierarchyManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\AddOns\Settings.cs">
+      <Link>GXPEngine\AddOns\Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\AddOns\TiledMapParser.cs">
+      <Link>GXPEngine\AddOns\TiledMapParser.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\AddOns\Window.cs">
+      <Link>GXPEngine\AddOns\Window.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\BlendMode.cs">
+      <Link>GXPEngine\Core\BlendMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\BoxCollider.cs">
+      <Link>GXPEngine\Core\BoxCollider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\Collider.cs">
+      <Link>GXPEngine\Core\Collider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\Collision.cs">
+      <Link>GXPEngine\Core\Collision.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\GLContext.cs">
+      <Link>GXPEngine\Core\GLContext.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\Rectangle.cs">
+      <Link>GXPEngine\Core\Rectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\SoundSystem.cs">
+      <Link>GXPEngine\Core\SoundSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\Texture2D.cs">
+      <Link>GXPEngine\Core\Texture2D.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\Transformable.cs">
+      <Link>GXPEngine\Core\Transformable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Core\Vector2.cs">
+      <Link>GXPEngine\Core\Vector2.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\FMOD\FMOD.cs">
+      <Link>GXPEngine\FMOD\FMOD.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\FMOD\FMODSoundSystem.cs">
+      <Link>GXPEngine\FMOD\FMODSoundSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Managers\CollisionManager.cs">
+      <Link>GXPEngine\Managers\CollisionManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Managers\UpdateManager.cs">
+      <Link>GXPEngine\Managers\UpdateManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\OpenGL\GL.cs">
+      <Link>GXPEngine\OpenGL\GL.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\SoLoud\Soloud.cs">
+      <Link>GXPEngine\SoLoud\Soloud.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\SoLoud\SoloudSoundSystem.cs">
+      <Link>GXPEngine\SoLoud\SoloudSoundSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Utils\Input.cs">
+      <Link>GXPEngine\Utils\Input.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Utils\Key.cs">
+      <Link>GXPEngine\Utils\Key.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Utils\MouseHandler.cs">
+      <Link>GXPEngine\Utils\MouseHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Utils\Time.cs">
+      <Link>GXPEngine\Utils\Time.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GXPEngine\Utils\Utils.cs">
+      <Link>GXPEngine\Utils\Utils.cs</Link>
+    </Compile>
+    <Compile Include="Player.cs" />
+    <Compile Include="Vec2.cs" />
+  </ItemGroup>
+  <ItemGroup />
+</Project>
