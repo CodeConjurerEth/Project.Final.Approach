@@ -125,8 +125,8 @@ public class Player : Sprite
 
     void Update()
     {
-        HandleInput();
-       // HandleInputArrows();
+       // HandleInput();
+        HandleInputArrows();
 
         Vec2 friction = (velocity.Normalized());
         velocity -= friction * _frictionSpeed;
