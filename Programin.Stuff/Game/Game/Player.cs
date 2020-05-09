@@ -53,7 +53,7 @@ public class Player : Sprite
             float projection = lineVec.Normalized().Dot(differenceVec);
             float blockDistance = Mathf.Sqrt(differenceVecLength * differenceVecLength - projection * projection);
             float colTime = 99;
-            if (blockDistance < width)
+            if (blockDistance < width) // change the widths (thiz for circles) , look at the other coll (not the a,b,c one)
             {
                 float a = lineNormal.Dot(oldDifferenceVec) - width;
                 float b = -lineNormal.Dot(velocity);
@@ -85,11 +85,12 @@ public class Player : Sprite
             return null;
     }
 
-    private void HandleCollision(CollisionInfo col)
+    private void ResolveCollision(CollisionInfo col)
     {
         if (col.other is LineSegment)
         {
-
+            position += col.normal;
+            velocity.SetXY(0, 0);
         }
     }
 
@@ -119,7 +120,6 @@ public class Player : Sprite
     void HandleInputArrows()
     { 
         Vec2 unitVector = Vec2.GetUnitVectorDeg(rotation);
-        Vec2 oppositeVector = Vec2.GetUnitVectorDeg(-rotation);
         float rotationValue = velocity.Length() / 5f;
         if (Input.GetKey(Key.LEFT))
         {
@@ -191,6 +191,22 @@ public class Player : Sprite
         Vec2 friction = (velocity.Normalized());
         velocity -= friction * _frictionSpeed;
         position += velocity;
+
+        CollisionInfo firstCollision = FindEarliestCollision();
+        if (firstCollision != null)
+        {
+            ResolveCollision(firstCollision);
+            if (firstCollision.timeOfImpact < Mathf.Abs(0.00001f))
+            {
+                _oldPosition = position;
+                position += velocity;
+                CollisionInfo secondCollision = FindEarliestCollision();
+                if (secondCollision != null)
+                {
+                    ResolveCollision(secondCollision);
+                }
+            }
+        }
 
         UpdateScreenPosition();
     }
