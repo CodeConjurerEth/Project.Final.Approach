@@ -18,6 +18,11 @@ public struct Vec2
         y = vec.y;
     }
 
+    public Vec2(Vec2 vec)
+    {
+        x = vec.x;
+        y = vec.y;
+    }
 
     public void SetXY(int x, int y)
     {
