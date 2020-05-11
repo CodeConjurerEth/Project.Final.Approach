@@ -7,7 +7,7 @@ public class Player : Sprite
     public Vec2 velocity;
     public Vec2 position;
 
-    public Player() : base("square.png", true)
+    public Player() : base("car.png", true)
     {
         position.SetXY(500, 500);
         SetOrigin(width / 2, height / 2);
@@ -42,7 +42,8 @@ public class Player : Sprite
         Vec2 finalUnitNormal = new Vec2(0, 0);
         GameObject finalGameObj = this;
         float finalColTime = 99;
-        for (int i = 0; i < myGame.GetNumberOfLines(); i++) //kinda works
+        float radius = height / 2;
+        for (int i = 0; i < myGame.GetNumberOfLines(); i++) //kinda works (circle hitbox)
         {
             LineSegment lineSegment = myGame.GetLine(i);
             Vec2 lineVec = lineSegment.end - lineSegment.start;
@@ -53,15 +54,15 @@ public class Player : Sprite
             float projection = lineVec.Normalized().Dot(differenceVec);
             float blockDistance = Mathf.Sqrt(differenceVecLength * differenceVecLength - projection * projection);
             float colTime = 99;
-            if (blockDistance < width) // change the widths (thiz for circles) , look at the other coll (not the a,b,c one)
+            if (blockDistance < radius) // circle collision
             {
-                float a = lineNormal.Dot(oldDifferenceVec) - width;
+                float a = lineNormal.Dot(oldDifferenceVec) - radius;
                 float b = -lineNormal.Dot(velocity);
                 if (b >= 0)
                 {
                     if (a >= 0)
                         colTime = a / b;
-                    else if (a >= -width)
+                    else if (a >= -radius)
                         colTime = 0;
                     if (colTime <= 1)
                     {
@@ -79,6 +80,49 @@ public class Player : Sprite
                 }
             }
         }
+        for (int i = 0; i < myGame.GetNumberOfBallMovers(); i++) //ball to ball collision
+        {
+            Ball mover = myGame.GetBallMover(i);
+            Vec2 relativePosition = _oldPosition - mover.position;
+            if (relativePosition.Length() < radius + mover.radius)
+            {
+                float a = velocity.Length() * velocity.Length();
+                float b = 2 * velocity.Dot(relativePosition);
+                float c = (relativePosition.Length() * relativePosition.Length()) - ((radius + mover.radius) * (radius + mover.radius));
+                float colTime;
+                if (c < 0)
+                {
+                    if (b < 0)
+                    {
+                        colTime = 0;
+                        if (colTime <= finalColTime)
+                        {
+                            Vec2 pointOfImpact = _oldPosition + velocity * colTime;
+                            Vec2 unitNormal = (pointOfImpact - mover.position).Normalized();
+                            finalColTime = colTime;
+                            finalGameObj = mover;
+                            finalUnitNormal = unitNormal;
+                        }
+                    }
+                    if (a < Mathf.Abs(0.00001f))
+                    {
+                        float delta = (b * b) - (4 * a * c);
+                        if (delta >= 0)
+                        {
+                            colTime = (-b - Mathf.Sqrt(delta)) / (2 * a);
+                            if (colTime >= 0 && colTime < 1)
+                            {
+                                Vec2 pointOfImpact = _oldPosition + velocity * colTime;
+                                Vec2 unitNormal = (pointOfImpact - mover.position).Normalized();
+                                finalColTime = colTime;
+                                finalGameObj = mover;
+                                finalUnitNormal = unitNormal;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         if (finalColTime != 99)
             return new CollisionInfo(finalUnitNormal, finalGameObj, finalColTime);
         else
@@ -89,7 +133,12 @@ public class Player : Sprite
     {
         if (col.other is LineSegment)
         {
-            position += col.normal;
+            position = _oldPosition;
+            velocity.SetXY(0, 0);
+        }
+        if (col.other is Ball)
+        {
+            position = _oldPosition;
             velocity.SetXY(0, 0);
         }
     }
@@ -120,7 +169,7 @@ public class Player : Sprite
     void HandleInputArrows()
     { 
         Vec2 unitVector = Vec2.GetUnitVectorDeg(rotation);
-        float rotationValue = velocity.Length() / 5f;
+        float rotationValue = velocity.Length() / 3f;
         if (Input.GetKey(Key.LEFT))
         {
             if (Input.GetKey(Key.UP) || _movingForward)
