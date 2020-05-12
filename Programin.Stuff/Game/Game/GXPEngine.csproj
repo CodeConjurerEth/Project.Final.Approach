@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimalScreen.cs" />
     <Compile Include="Ball.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="CollisionInfo.cs" />

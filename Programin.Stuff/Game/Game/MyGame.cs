@@ -8,6 +8,19 @@ public class MyGame : Game
     public List<Ball> balls;
     public List<LineSegment> lines;
 
+    public bool GetVolumeState()
+    {
+        return _volume;
+    }
+
+    public void SwitchVolumeState()
+    {
+        if (_volume)
+            _volume = false;
+        else
+            _volume = true;
+    }
+
     public int GetNumberOfLines()
     {
         return lines.Count;
@@ -44,13 +57,36 @@ public class MyGame : Game
     {
         _startSceneNumber = sceneNumber;
         // remove previous scene:
+        if (_mapScreen != null)
+        {
+            _mapScreen.LateDestroy();
+        }
+        if (_animalScreen != null)
+        {
+            _animalScreen.LateDestroy();
+        }
+
+        foreach (Ball mover in balls)
+        {
+            mover.Destroy();
+        }
+        balls.Clear();
+        foreach (LineSegment line in lines)
+        {
+            line.Destroy();
+        }
+        lines.Clear();
 
         //start new scene
         switch (sceneNumber)
         {
             default:
-                MapScreen mapScreen = new MapScreen();
-                AddChild(mapScreen);
+                _mapScreen = new MapScreen();
+                AddChild(_mapScreen);
+                break;
+            case 1:
+                _animalScreen = new AnimalScreen("savannaBG.png");
+                AddChild(_animalScreen);
                 break;
         }
     }
@@ -60,23 +96,26 @@ public class MyGame : Game
         balls = new List<Ball>();
         lines = new List<LineSegment>();
 
+        targetFps = 60;
+        _volume = true;
+
         _lineContainer = new Canvas(width, height);
         AddChild(_lineContainer);
 
-        targetFps = 60;
         LoadScene(_startSceneNumber);
     }
 
     // PRIVATE
-    private bool _paused = false;
     private int _startSceneNumber = 0;
+    private bool _volume;
 
-    private  Canvas _lineContainer = null;
+    private MapScreen _mapScreen;
+    private AnimalScreen _animalScreen;
+    private Canvas _lineContainer = null;
 
 	void Update () {
-        targetFps = Input.GetKey(Key.SPACE) ? 5 : 60;
-        if (!_paused) {
-            //StepThroughX();
+        if (Input.GetKeyDown(Key.R)) {
+            LoadScene(_startSceneNumber);
 		}
 	}
 

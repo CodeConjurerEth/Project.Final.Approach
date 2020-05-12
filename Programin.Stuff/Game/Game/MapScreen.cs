@@ -3,40 +3,76 @@ using GXPEngine;
 
 public class MapScreen : GameObject
 {
-    private Vec2 _mousePos;
-
     public MapScreen()
 	{
-        Sprite background = new Sprite("mapSketch.png", false);
-        AddChild(background);
-
-        Player player = new Player();
-        AddChild(player);
-
-        HUD HUD = new HUD(this);
-        AddChild(HUD);
-
         _myGame = (MyGame)game;
-        _width = _myGame.width;
-        _height = _myGame.height;
+        //_width = _myGame.width;
+        //_height = _myGame.height;
+        _day = true;
 
+        SetupChildren("mapSketch.png");
         AddInvisibleWalls();
-    }
-
-    void Update()
-    {
-        _mousePos = new Vec2(Input.mouseX, Input.mouseY);
-        Console.WriteLine(_mousePos);
     }
 
     public bool GetDayState()
     {
-        return day;
+        return _day;
+    }
+
+    public void SwitchDayState()
+    {
+        if (_day)
+        {
+            _day = false;
+            DestroyChildren();
+            SetupChildren("mapSketchpng.png");
+        }
+        else
+        {
+            _day = true;
+            DestroyChildren();
+            SetupChildren("mapSketch.png");
+        }
     }
 
     private MyGame _myGame;
-    private float _width, _height;
-    private bool day = true;
+    private Sprite _background;
+    private Player _player;
+    private HUD _HUD;
+    //private float _width, _height;
+    private bool _day;
+
+    private void SetupChildren(string backgroundFilename)
+    {
+        _background = new Sprite(backgroundFilename, false);
+        AddChild(_background);
+
+        _player = new Player();
+        AddChild(_player);
+
+        AddInvisibleWalls();
+
+        _HUD = new HUD(this);
+        AddChild(_HUD);
+    }
+
+    private void DestroyChildren()
+    {
+        _background.LateDestroy();
+        _player.LateDestroy();
+        _HUD.LateDestroy();
+
+        foreach (Ball mover in _myGame.balls)
+        {
+            mover.Destroy();
+        }
+        _myGame.balls.Clear();
+        foreach (LineSegment line in _myGame.lines)
+        {
+            line.Destroy();
+        }
+        _myGame.lines.Clear();
+    }
 
     private void AddInvisibleWalls()
     {
