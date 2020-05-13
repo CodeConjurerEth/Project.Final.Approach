@@ -6,12 +6,9 @@ public class MapScreen : GameObject
     public MapScreen()
 	{
         _myGame = (MyGame)game;
-        //_width = _myGame.width;
-        //_height = _myGame.height;
         _day = true;
 
         SetupChildren("mapSketch.png");
-        AddInvisibleWalls();
     }
 
     public bool GetDayState()
@@ -39,7 +36,6 @@ public class MapScreen : GameObject
     private Sprite _background;
     private Player _player;
     private HUD _HUD;
-    //private float _width, _height;
     private bool _day;
 
     private void SetupChildren(string backgroundFilename)
@@ -50,21 +46,24 @@ public class MapScreen : GameObject
         _player = new Player();
         AddChild(_player);
 
-        AddInvisibleWalls();
-
         _HUD = new HUD(this);
         AddChild(_HUD);
+
+        AddInvisibleWalls();
     }
 
     private void DestroyChildren()
     {
         _background.LateDestroy();
+        _background = null;
         _player.LateDestroy();
+        _player = null;
         _HUD.LateDestroy();
-
-        foreach (Ball mover in _myGame.balls)
+        _HUD = null;
+       
+        foreach (Ball ball in _myGame.balls)
         {
-            mover.Destroy();
+            ball.Destroy();
         }
         _myGame.balls.Clear();
         foreach (LineSegment line in _myGame.lines)
@@ -111,4 +110,5 @@ public class MapScreen : GameObject
         AddChild(invLine);
         _myGame.lines.Add(invLine);
     }
+
 }

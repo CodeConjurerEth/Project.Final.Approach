@@ -85,7 +85,7 @@ public class MyGame : Game
                 AddChild(_mapScreen);
                 break;
             case 1:
-                _animalScreen = new AnimalScreen("savannaBG.png");
+                _animalScreen = new AnimalScreen("savannaBG.png", "Thick_knees_colored.png", new Vec2(width*3f / 4f, height/2), 0.5f, "Thick_Knees.wav", "Knees", 1);
                 AddChild(_animalScreen);
                 break;
         }
@@ -95,7 +95,7 @@ public class MyGame : Game
     {
         balls = new List<Ball>();
         lines = new List<LineSegment>();
-
+        
         targetFps = 60;
         _volume = true;
 
@@ -115,8 +115,9 @@ public class MyGame : Game
 
 	void Update () {
         if (Input.GetKeyDown(Key.R)) {
-            LoadScene(_startSceneNumber);
-		}
+            LoadScene(1);
+           // Console.WriteLine(game.GetDiagnostics());
+        }
 	}
 
 	static void Main() {

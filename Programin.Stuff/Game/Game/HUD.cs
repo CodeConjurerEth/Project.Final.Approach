@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Text;
-using GXPEngine;
+﻿using GXPEngine;
 
 public class HUD : Canvas
 {
@@ -11,10 +8,6 @@ public class HUD : Canvas
         _myGame = (MyGame)game;
         _width = _myGame.width;
         _height = _myGame.height;
-
-        //_fontCollection = new PrivateFontCollection();
-        // _fontCollection.AddFontFile("CarnevaleeFreakshow.ttf");
-        //_font = new Font(_fontCollection.Families[0], 50);
 
         SetVolumeButton("sound.png");
         SetDayNightButton("Sun.png");
@@ -55,14 +48,12 @@ public class HUD : Canvas
         }
     }
 
-    //private Font _font;
-    //private PrivateFontCollection _fontCollection;
     private Vec2 _mousePos;
     private MyGame _myGame;
     private MapScreen _mapScreen;
     private Sprite _dayNightButton;
     private Sprite _volumeButton;
-    private float _width, _height;
+    private readonly float _width, _height;
 
     private void SetVolumeButton(string fileName)
     {

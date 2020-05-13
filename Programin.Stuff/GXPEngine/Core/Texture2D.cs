@@ -45,7 +45,7 @@ namespace GXPEngine.Core
 				tex2d = new Texture2D(filename);
 				LoadCache[filename] = tex2d;
 			}
-			tex2d.stayInCache |= keepInCache; // setting it once to true keeps it in cache
+			tex2d.stayInCache |= true; // setting it once to true keeps it in cache
 			tex2d.count ++;
 			return tex2d;
 		}
