@@ -22,13 +22,15 @@ main{
     display: inline-flex;
 }
 
-.right img{
-    width: 50%;
-    height: 30%;
+.right img:first-child{
+    width: 50vh;
+    height: 1080px;
+    padding: 10px;
 }
 
 .left img:first-child{
-    width: 50vw;
+    width: 50vh;
     height: 1080px;
+    padding 10px;
     
 }

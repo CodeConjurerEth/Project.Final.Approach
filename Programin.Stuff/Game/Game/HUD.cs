@@ -3,9 +3,8 @@ using System;
 
 public class HUD : Canvas
 {
-    public HUD(MapScreen mapScreen) : base(1920, 1080, false)
+    public HUD() : base(1920, 1080, false)
     {
-        _mapScreen = mapScreen;
         _myGame = (MyGame)game;
         _width = _myGame.width;
         _height = _myGame.height;
@@ -20,9 +19,9 @@ public class HUD : Canvas
         Console.WriteLine(_mousePos);
         Vec2 diffVectorDay = _mousePos - new Vec2(_dayNightButton.x, _dayNightButton.y);
         if (diffVectorDay.Length() < _dayNightButton.width / 2 && Input.GetMouseButtonDown(0))
-            _mapScreen.SwitchDayState();
+            _myGame.SwitchDayState();
 
-        if (!_mapScreen.GetDayState())
+        if (!_myGame.GetDayState())
         {
             _dayNightButton.LateDestroy();
             SetDayNightButton("Moon.png");
@@ -51,7 +50,6 @@ public class HUD : Canvas
 
     private Vec2 _mousePos;
     private MyGame _myGame;
-    private MapScreen _mapScreen;
     private Sprite _dayNightButton;
     private Sprite _volumeButton;
     private readonly float _width, _height;

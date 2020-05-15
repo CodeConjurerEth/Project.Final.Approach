@@ -5,6 +5,6 @@ African Elephant, the Overcompensating Mammal.
     An African elephant’s large ears also serve many purposes. The ears’ large surface area helps radiate 
     excess heat under the harsh African sun. The ears are also often used to communicate visually. 
     Flapping their ears can signify either aggression or joy. 
-    Although elephants can make a very wide range of sounds (10 octaves), they mostly communicate through low 
-    frequency sounds called “rumbling.” In fact, elephants are capable of producing and perceiving sounds one 
+    Although elephants can make a very wide range of sounds (10 octaves), they mostly communicate through
+    low frequency sounds called “rumbling.” In fact, elephants are capable of producing and perceiving sounds
     
