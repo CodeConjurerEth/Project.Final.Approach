@@ -1,0 +1,9 @@
+Gazelle, the exotic Antelope.
+    Gazelles are thin, graceful antelopes that live in Africa and Asia. They resemble deer and are in the same 
+    family as goats, cattle and sheep. Gazelles can be identified by their curved, ringed horns, tan or 
+    reddish-brown coats and white rumps. Often, there are spots or stripes on their coats. Their light frames 
+    help make them agile and better able to escape from predators.
+    Gazelles rely on their speed to escape from predators. Gazelles can reach speeds up to 60 mph in 
+    short bursts and sustain speeds of 30 to 40 mph. When running, gazelles use a bounding leap, called 
+    "pronking" or "stotting," which involves stiffly springing into the air with all four feet.
+    Most gazelles live in the hot, dry savannas and deserts of Africa and Asia. To stay hydrated in these 

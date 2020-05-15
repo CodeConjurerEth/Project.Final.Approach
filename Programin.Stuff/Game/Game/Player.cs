@@ -1,40 +1,33 @@
 ﻿using System;
 using GXPEngine;
 
-public class Player : Sprite
+public class Player : AnimationSprite
 {
     //PUBLIC
     public Vec2 velocity;
     public Vec2 position;
 
-    public Player() : base("car.png", true)
+    public Player() : base("car_spritessheet.png", 1, 7)
     {
-        position.SetXY(500, 500);
         SetOrigin(width / 2, height / 2);
 
-        _myGame = (MyGame)game;
+        _animationTimer = 0f;
         _speed = 1f;
         _maxVelocity = 7f;
         _frictionSpeed = 0.3f;
         _movingForward = false;
         _movingBackward = false;
-
-        _lrPos = _myGame.width / 2;
-        _lrSpeed = 5;
     }
 
     //PRIVATE
-    private MyGame _myGame;
     private Vec2 _oldPosition;
-    private float _mousePos;
-    private float _prevMousePos;
     private float _speed;
     private float _maxVelocity;
     private float _frictionSpeed;
-    private float _lrPos;
-    private float _lrSpeed;
+    private float _animationTimer;
     private bool _movingForward;
     private bool _movingBackward;
+
 
     CollisionInfo FindEarliestCollision()
     {
@@ -143,29 +136,6 @@ public class Player : Sprite
         }
     }
 
-    void HandleInput()
-    {
-        _prevMousePos = _mousePos;
-        _mousePos = Input.mouseX;
-        Console.WriteLine("position: " + _lrPos + "             speed: " + _lrSpeed);
-        //LIMIT POSITION LR BORDERS
-        if (_lrPos > _myGame.width - this.width / 2)
-            _lrPos = _myGame.width - this.width / 2;
-        else if (_lrPos < this.width / 2)
-            _lrPos = this.width / 2;
-
-        if (Input.GetMouseButton(0))
-        {
-            _lrSpeed = Mathf.Abs(_prevMousePos - _mousePos) / 2.5f;
-            if (_prevMousePos < _mousePos)
-                _lrPos += _lrSpeed;
-            if (_prevMousePos > _mousePos)
-                _lrPos -= _lrSpeed;
-        }
-        //WELL, POS
-        position.x = _lrPos;
-    }
-
     void HandleInputArrows()
     { 
         Vec2 unitVector = Vec2.GetUnitVectorDeg(rotation);
@@ -232,8 +202,7 @@ public class Player : Sprite
     }
 
     void Update()
-    {
-        //HandleInput();
+    { 
         HandleInputArrows();
 
         _oldPosition = position;
@@ -257,7 +226,17 @@ public class Player : Sprite
             }
         }
 
+        Animate(0, 7);
         UpdateScreenPosition();
+    }
+
+    protected void Animate(int startFrame, int numberOfFrames)
+    {
+        float frameInterval = 100f;
+
+        _animationTimer += Time.deltaTime;
+        int currentFrame = (int)(_animationTimer / frameInterval) % numberOfFrames + startFrame;
+        SetFrame(currentFrame);
     }
 
     void UpdateScreenPosition()

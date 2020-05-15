@@ -8,7 +8,7 @@ public class MapScreen : GameObject
         _myGame = (MyGame)game;
         _day = true;
 
-        SetupChildren("mapSketch.png");
+        SetupChildren("mapalmost.png");
     }
 
     public bool GetDayState()
@@ -28,7 +28,19 @@ public class MapScreen : GameObject
         {
             _day = true;
             DestroyChildren();
-            SetupChildren("mapSketch.png");
+            SetupChildren("mapalmost.png");
+        }
+    }
+
+    void Update()
+    {
+        if (_day)
+        {
+            CheckAnimalHitbox(new Vec2(430, 420), new Vec2(550, 490), 2);
+            CheckAnimalHitbox(new Vec2(635, 380), new Vec2(705, 490), 3);
+            CheckAnimalHitbox(new Vec2(735, 275), new Vec2(800, 345), 4);
+            CheckAnimalHitbox(new Vec2(1175, 940), new Vec2(1325, 1080), 5);
+            CheckAnimalHitbox(new Vec2(1485, 690), new Vec2(1620, 770), 6);
         }
     }
 
@@ -44,6 +56,8 @@ public class MapScreen : GameObject
         AddChild(_background);
 
         _player = new Player();
+        _player.position.SetXY(170, 770);
+        _player.rotation = -60f;
         AddChild(_player);
 
         _HUD = new HUD(this);
@@ -73,11 +87,21 @@ public class MapScreen : GameObject
         _myGame.lines.Clear();
     }
 
+    private void CheckAnimalHitbox(Vec2 topLeft, Vec2 bottomRight, int sceneNumber)
+    {
+        topLeft.x -= _player.height / 3;
+        topLeft.y -= _player.height / 3;
+        bottomRight.x += _player.height / 3;
+        bottomRight.y += _player.height / 3;
+        if (_player.position.x > topLeft.x && _player.position.x < bottomRight.x && _player.position.y > topLeft.y && _player.position.y < bottomRight.y)
+            _myGame.LoadScene(sceneNumber);
+    }
+
     private void AddInvisibleWalls()
     {
         AddInvisibleFullLine(new Vec2(970, 0), new Vec2(1030, 130));
         AddInvisibleFullLine(new Vec2(1030, 130), new Vec2(1007, 160));
-        AddInvisibleFullLine(new Vec2(1007, 160), new Vec2(1100, 215)); //bottom cap
+       // AddInvisibleFullLine(new Vec2(1007, 160), new Vec2(1100, 215)); //bottom cap
         AddInvisibleFullLine(new Vec2(1100, 215), new Vec2(1200, 205));
         AddInvisibleFullLine(new Vec2(1200, 205), new Vec2(1180, 120));
         AddInvisibleFullLine(new Vec2(1180, 120), new Vec2(1020, 0));
@@ -92,7 +116,7 @@ public class MapScreen : GameObject
         AddInvisibleFullLine(new Vec2(370, 679), new Vec2(280, 910));
         AddInvisibleFullLine(new Vec2(280, 910), new Vec2(821, 1080));
         AddInvisibleFullLine(new Vec2(821, 1080), new Vec2(805, 820));
-        AddInvisibleFullLine(new Vec2(370, 679), new Vec2(805, 820)); //top cap
+        //AddInvisibleFullLine(new Vec2(370, 679), new Vec2(805, 820)); //top cap
     }
 
     private void AddInvisibleFullLine(Vec2 start, Vec2 end)

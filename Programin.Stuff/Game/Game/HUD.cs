@@ -1,4 +1,5 @@
 ﻿using GXPEngine;
+using System;
 
 public class HUD : Canvas
 {
@@ -16,7 +17,7 @@ public class HUD : Canvas
     void Update()
     {
         _mousePos = new Vec2(Input.mouseX, Input.mouseY);
-
+        Console.WriteLine(_mousePos);
         Vec2 diffVectorDay = _mousePos - new Vec2(_dayNightButton.x, _dayNightButton.y);
         if (diffVectorDay.Length() < _dayNightButton.width / 2 && Input.GetMouseButtonDown(0))
             _mapScreen.SwitchDayState();

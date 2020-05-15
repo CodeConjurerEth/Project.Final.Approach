@@ -1,0 +1,34 @@
+@import url("desktop.css") screen and (min-width:960px);
+@import url("mobile.css") screen and (max-width:959px);
+body{
+    background-color: cornsilk;
+}
+
+header{
+    background-image: url(Art/savanna_river_day.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    width: 100vw;
+    height: 300px;
+}
+
+header > img{
+    position: absolute;
+    left: -50px;
+}
+
+main{
+    display: inline-flex;
+}
+
+.right img{
+    width: 50%;
+    height: 30%;
+}
+
+.left img:first-child{
+    width: 50vw;
+    height: 1080px;
+    
+}
