@@ -1,7 +1,7 @@
 @import url("desktop.css") screen and (min-width:960px);
 @import url("mobile.css") screen and (max-width:959px);
 body{
-    background-color: cornsilk;
+    background-color: black;
 }
 
 header{
@@ -87,5 +87,5 @@ footer{
     left: 25%;
     bottom: -200px;
     text-align: center;
-    color: aquamarine;
+    color: aqua;
 }
